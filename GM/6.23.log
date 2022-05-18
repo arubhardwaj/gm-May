@@ -1,0 +1,101 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021) (preloaded format=pdflatex 2021.11.25)  11 MAY 2022 22:16
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**6.23.tex
+(./6.23.tex
+LaTeX2e <2021-11-15>
+L3 programming layer <2021-11-22> (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count183
+\c@section=\count184
+\c@subsection=\count185
+\c@subsubsection=\count186
+\c@paragraph=\count187
+\c@subparagraph=\count188
+\c@figure=\count189
+\c@table=\count190
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/10/11 v1.3b Standard LaTeX Color (DPC)
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip49
+\fb@frw=\dimen141
+\fb@frh=\dimen142
+\FrameRule=\dimen143
+\FrameSep=\dimen144
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 2021/01/29 v2.0g defines alltt environment
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/psnfss/mathpazo.sty
+Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
+\symupright=\mathgroup4
+) (/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+pplx on input line 112.
+(/home/arubhardwaj/.TinyTeX/texmf-dist/tex/latex/psnfss/t1pplx.fd
+File: t1pplx.fd 2004/09/06 font definitions for T1/pplx.
+)
+! Font T1/pplx/m/n/10=pplr9e at 10.0pt not loadable: Metric (TFM) file not found.
+<to be read again> 
+                   relax 
+l.112 ...\familydefault\seriesdefault\shapedefault
+                                                   
+Here is how much of TeX's memory you used:
+ 1188 strings out of 480313
+ 16783 string characters out of 5897046
+ 306183 words of memory out of 5000000
+ 19110 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 55i,0n,62p,247b,84s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+!  ==> Fatal error occurred, no output PDF file produced!
+
+
+! kpathsea: Running mktextfm pplr9e
+! /home/arubhardwaj/.TinyTeX/texmf-dist/web2c/mktexnam: Could not map source abbreviation  for pplr9e.
+! /home/arubhardwaj/.TinyTeX/texmf-dist/web2c/mktexnam: Need to update ?
+! mktextfm: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1; ; nonstopmode; input pplr9e
+! This is METAFONT, Version 2.71828182 (TeX Live 2021) (preloaded base=mf)
+
+! kpathsea: Running mktexmf pplr9e
+
+! ! I can't find file `pplr9e'.
+! <*> ...ljfour; mag:=1; ; nonstopmode; input pplr9e
+                                                  
+! Please type another input file name
+! ! Emergency stop.
+! <*> ...ljfour; mag:=1; ; nonstopmode; input pplr9e
+                                                  
+! Transcript written on mfput.log.
+! grep: pplr9e.log: No such file or directory
+! mktextfm: `mf-nowin -progname=mf \mode:=ljfour; mag:=1; ; nonstopmode; input pplr9e' failed to make pplr9e.tfm.
+! kpathsea: Appending font creation commands to missfont.log.

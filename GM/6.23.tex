@@ -1,0 +1,168 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage[sc]{mathpazo}
+\renewcommand{\sfdefault}{lmss}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=2,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\hypersetup{
+ pdfstartview={XYZ null null 1}}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.8}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\floatpagefraction}{0.75}
+
+\makeatother
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+
+
+
+
+
+The results below are generated from an R script.
+
+# Packages ----------------------------------------------------------------library(tidyverse)getwd()## [1] "/home/arubhardwaj/Downloads/GM"
+setwd("/home/arubhardwaj/Downloads/GM") # define WDnew_patients <- read_csv("dt_new_pt.csv")## New names:
+## * `` -> ...1
+## Warning: One or more parsing issues, see `problems()` for details
+## Rows: 230975 Columns: 158
+## -- Column specification ------------------------------------------------------------------
+## Delimiter: ","
+## chr (69): first_month, last_month, dm_presentation, start_HES_fu, end_HES_fu, crd_uts_...
+## dbl (80): ...1, pt, study_year, pracid, gender, yob, Age_presentation, age_this_month,...
+## lgl  (9): current_mi_CPRD_earliest, current_mi_CPRD_event, current_mi_CPRD_event_weigh...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+# Define year groups:#new_patients$last_month <- lubridate::mdy(new_patients$last_month)new_patients <- new_patients %>% mutate(year_group = ifelse(last_month>='2000-01-31' & last_month <= '2002-10-01',"2000-2002",
+                                                            ifelse(last_month>='2002-10-01' & last_month <= '2008-05-01',"2002-2008",
+                                                                   ifelse(last_month>='2008-05-01' & last_month <= '2012-07-01',"2008-2012",ifelse(last_month>='2012-07-01' & last_month <= '2014-03-31',"2012-2014","NA")))))total <- new_patients %>% group_by(year_group) %>% 
+  summarise(rate_1000_pop = sum(current_cancer)/1000,
+            `standard deviation` = sd(current_cancer)) %>% na.omit()# malestotal_m <- new_patients %>% filter(gender==1) %>% group_by(year_group) %>% 
+  summarise(rate_1000_pop_Males = sum(current_cancer)/1000,
+            `standard deviation Males` = sd(current_cancer))# femalestotal_f <- new_patients %>% filter(gender==2) %>% group_by(year_group) %>% 
+  summarise(rate_1000_pop_Females = sum(current_cancer)/1000,
+            `standard deviation Females` = sd(current_cancer))all_years <- new_patients %>% 
+  summarise(rate_1000_pop = sum(current_cancer,na.rm = T)/1000,
+            `standard deviation` = sd(current_cancer,na.rm = T))all_years <- cbind("year_group"="All Years",all_years)all_years_m <- new_patients %>% filter(gender==1) %>% 
+  summarise(rate_1000_pop_Males = sum(current_cancer)/1000,
+            `standard deviation Males` = sd(current_cancer))all_years_m <- cbind("year_group"="All Years",all_years_m)all_years_f <- new_patients %>% filter(gender==2) %>% 
+  summarise(rate_1000_pop_Females = sum(current_cancer)/1000,
+            `standard deviation Females` = sd(current_cancer))all_years_f <- cbind("year_group"="All Years",all_years_f)all_years <- cbind(all_years,all_years_m[,2:3], all_years_f[,2:3])total <- cbind(total, total_m[,2:3], total_f[,2:3])total <- rbind(total,all_years)write_csv(total, "results/new_patients/6.23/6.23.csv")knitr::stitch("results/new_patients/6.23/6.23.R")## 
+## 
+## processing file: 6.23.Rnw
+## Error in parse_block(g[-1], g[1], params.src, markdown_mode): Duplicate chunk label 'setup', which has been used for the chunk:
+## options(width=90)
+## knitr::opts_chunk$set(out.width = '.6\\linewidth')
+## .knitr.title = if (exists('.knitr.title')) paste('\\title{', .knitr.title, '}', sep = '') else ''
+## .knitr.author = if (nzchar(.knitr.title) && exists('.knitr.author')) {
+##   paste('\\author{', .knitr.author, '%\n',
+##         '\\thanks{This report is automatically generated with the R package \\textbf{knitr}
+##         (version ', packageVersion('knitr'), ').}}', sep = '')
+## } else ''
+
+
+The R session information (including the OS info, R version and all
+packages used):
+
+sessionInfo()## R version 4.0.4 (2021-02-15)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Parrot OS 5.0 (LTS)
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_IN.UTF-8    LC_NUMERIC=C            LC_TIME=en_IN          
+##  [4] LC_COLLATE=en_IN.UTF-8  LC_MONETARY=en_IN       LC_MESSAGES=en_IN.UTF-8
+##  [7] LC_PAPER=en_IN          LC_NAME=C               LC_ADDRESS=C           
+## [10] LC_TELEPHONE=C          LC_MEASUREMENT=en_IN    LC_IDENTIFICATION=C    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] lubridate_1.7.10 forcats_0.5.1    stringr_1.4.0    dplyr_1.0.8      purrr_0.3.4     
+##  [6] readr_2.1.2      tidyr_1.1.4      tibble_3.1.6     ggplot2_3.3.5    tidyverse_1.3.1 
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.8.3     highr_0.9        cellranger_1.1.0 pillar_1.7.0     compiler_4.0.4  
+##  [6] dbplyr_2.1.1     tools_4.0.4      bit_4.0.4        evaluate_0.14    jsonlite_1.8.0  
+## [11] lifecycle_1.0.1  gtable_0.3.0     pkgconfig_2.0.3  rlang_1.0.2      reprex_2.0.1    
+## [16] rstudioapi_0.13  DBI_1.1.2        cli_3.2.0        parallel_4.0.4   haven_2.4.3     
+## [21] xfun_0.26        xml2_1.3.2       withr_2.5.0      httr_1.4.2       knitr_1.34      
+## [26] fs_1.5.0         generics_0.1.2   vctrs_0.3.8      hms_1.1.1        bit64_4.0.5     
+## [31] grid_4.0.4       tidyselect_1.1.2 glue_1.6.2       R6_2.5.1         fansi_1.0.3     
+## [36] readxl_1.3.1     vroom_1.5.7      tzdb_0.2.0       modelr_0.1.8     magrittr_2.0.3  
+## [41] backports_1.3.0  scales_1.1.1     ellipsis_0.3.2   rvest_1.0.2      assertthat_0.2.1
+## [46] colorspace_2.0-2 utf8_1.2.2       stringi_1.7.6    munsell_0.5.0    broom_0.7.10    
+## [51] crayon_1.5.1
+Sys.time()## [1] "2022-05-11 22:16:53 CEST"
+
+
+
+\end{document}
